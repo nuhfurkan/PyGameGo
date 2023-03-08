@@ -30,10 +30,6 @@ class Player:
 
     def move_y(self, change):
         self.y += change
-        
-"""
-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
-"""
 
     def get_x(self):
         return self.x

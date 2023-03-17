@@ -22,9 +22,6 @@ class Game:
         self.clock = pygame.time.Clock()
         pass
 
-    def __del__(self):
-        pass
-
 
     def Navigate(self):
         navigation = tkinter.Tk()
@@ -37,7 +34,6 @@ class Game:
 
         def onClosing():
             quit()
-
 
         navigation.title(self.game_name)
         navigation.geometry('800x600')

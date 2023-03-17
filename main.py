@@ -11,5 +11,7 @@ myCircle = Circle(150, 150, 25)
 myGame.add_elem(myCircle)
 myGame.add_elem(myRect)
 myGame.add_player(myUfo)
-myGame.StartGame()
 
+myGame.Navigate()
+
+i = input()

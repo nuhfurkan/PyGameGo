@@ -3,8 +3,6 @@ import colors
 from objects import *
 from events import *
 from player import *
-import tkinter
-
 
 class Game:
     def __init__(self, name) -> None:
@@ -17,32 +15,9 @@ class Game:
         self.elems = []
         self.player: Player = None
 
-        self.gameDisplay = pygame.display.set_mode((self.display_width,self.display_heigth), flags=pygame.HIDDEN)
+        self.gameDisplay = pygame.display.set_mode((self.display_width,self.display_heigth), flags=pygame.SHOWN)
         pygame.display.set_caption(self.game_name)
         self.clock = pygame.time.Clock()
-        pass
-
-
-    def Navigate(self):
-        navigation = tkinter.Tk()
-        
-        def onPlay():
-            navigation.destroy()
-            self.gameDisplay = pygame.display.set_mode((self.display_width,self.display_heigth), flags=pygame.SHOWN)
-            self.StartGame()
-            pass
-
-        def onClosing():
-            quit()
-
-        navigation.title(self.game_name)
-        navigation.geometry('800x600')
-
-        playButton = tkinter.Button(navigation, text="Play", command=onPlay)
-        playButton.pack()
-
-        navigation.protocol("WM_DELETE_WINDOW", onClosing)
-        navigation.mainloop()
         pass
 
     def set_display_width(self, new_width):

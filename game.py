@@ -76,8 +76,6 @@ class Game:
                     newSaver.Save(self)
                     onGoing = False
 
-        #print(event)
-
         # Game starts here
             self.player.display(gameDisplay=self.gameDisplay)
             if self.player.get_x() > self.display_width - self.player.get_width() or self.player.get_x() < 0:

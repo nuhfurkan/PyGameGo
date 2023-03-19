@@ -71,8 +71,3 @@ class Saver:
         self.conn.commit()
         c.close()
         pass
-    
-
-mySaver = Saver()
-
-

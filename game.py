@@ -3,6 +3,7 @@ import colors
 from objects import *
 from events import *
 from player import *
+from saver import Saver
 
 class Game:
     def __init__(self, name) -> None:
@@ -71,6 +72,8 @@ class Game:
             self.gameDisplay.fill(colors.white)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    newSaver = Saver()
+                    newSaver.Save(self)
                     onGoing = False
 
         #print(event)

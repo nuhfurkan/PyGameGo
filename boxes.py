@@ -1,4 +1,11 @@
+import tkinter
+from tkinter import messagebox
+
 class Box:
+    def __init__(self) -> None:
+        self.window = tkinter.Tk()
+        self.window.geometry("0x0")
+        pass
     pass
 
 class MessageBox(Box):
@@ -9,7 +16,9 @@ class ErrorBox(Box):
         super().__init__()
         self.message = message
 
-    def diplay(self, gameDisplay):
+    def diplay(self):
+        self.window
+        messagebox.showerror("Error", self.message)
         print(self.message)
         pass 
     pass

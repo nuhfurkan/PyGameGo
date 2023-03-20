@@ -9,15 +9,21 @@ class Color:
         "blue": (0, 0, 255)
     }
 
+
+
     def __init__(self, name: str="", r:int=0, g:int=0, b:int=0) -> None:
         if name != "":
             try:
                 tpl = self.colorList[name]
+                self.red = tpl[0]
+                self.green = tpl[1]
+                self.blue = tpl[2]
             except:
                 ErrorBox("Undefined color name used").diplay()
-            self.red = tpl[0]
-            self.green = tpl[1]
-            self.blue = tpl[2]
+                self.red: int = 0
+                self.green: int = 0
+                self.blue: int = 0
+            
         else:
             self.red = r
             self.green = g

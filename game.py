@@ -1,5 +1,5 @@
 import pygame
-import colors
+from colors import Color
 from objects import *
 from events import *
 from player import *
@@ -69,7 +69,7 @@ class Game:
         onGoing = True
 
         while onGoing:
-            self.gameDisplay.fill(colors.white)
+            self.gameDisplay.fill(Color("white").get_color())
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     newSaver = Saver()

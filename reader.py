@@ -25,6 +25,7 @@ class Reader:
 
     def readRecords(self):
         c = self.conn.cursor()
+        c.execute("CREATE TABLE IF NOT EXISTS games([gameId] INTEGER PRIMARY KEY AUTOINCREMENT, [fileName] TEXT NOT NULL, [recordName] TEXT)")
         c.execute("SELECT * FROM games")
         data = c.fetchall()
         res = []

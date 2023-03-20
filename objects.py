@@ -1,5 +1,5 @@
 import pygame
-import colors
+from colors import Color
 from events import *
 from errors import *
 
@@ -42,7 +42,7 @@ class Text(Object):
         Object.__init__(self)
         self.text = text
         self.font = pygame.font.SysFont(None, 24)
-        self.textSurface = self.font.render(text, True, colors.black)
+        self.textSurface = self.font.render(text, True, Color("black").get_color())
         
     def text_surface(self):
         return self.textSurface
@@ -51,7 +51,7 @@ class Text(Object):
         return self.textSurface.get_rect()
     
 class Rectangle(Object):
-    def __init__(self, x, y, w, h, color = colors.black) -> None:
+    def __init__(self, x, y, w, h, color = Color("black").get_color()) -> None:
         Object.__init__(self)
         self.x = x
         self.y = y
@@ -71,7 +71,7 @@ class Rectangle(Object):
         pass
 
 class Line(Object):
-    def __init__(self, start_x, start_y, end_x, end_y, width, color = colors.black) -> None:
+    def __init__(self, start_x, start_y, end_x, end_y, width, color = Color("black").get_color()) -> None:
         Object.__init__(self)
         self.sx = start_x
         self.sy = start_y
@@ -86,7 +86,7 @@ class Line(Object):
         pass
 
 class Circle(Object):
-    def __init__(self, x, y, radius, color = colors.black) -> None:
+    def __init__(self, x, y, radius, color = Color("black").get_color()) -> None:
         Object.__init__(self)
         self.x = x
         self.y = y
@@ -99,7 +99,7 @@ class Circle(Object):
         pass
 
 class Polygon(Object):
-    def __init__(self, coordinates: tuple, color = colors.black) -> None:
+    def __init__(self, coordinates: tuple, color = Color("black").get_color()) -> None:
         Object.__init__(self)
         self.cords: tuple = ()
         if self.set_cords(coordinates) == False:
@@ -122,4 +122,8 @@ class Polygon(Object):
     def display(self, gameDisplay):
         pygame.draw.polygon(gameDisplay, self.color, self.cords)
         pass
+
+class RectangleButton(Rectangle):
+    def __init__(self, x, y, w, h, color=Color("black").get_color()) -> None:
+        super().__init__(x, y, w, h, color)
 

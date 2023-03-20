@@ -17,5 +17,3 @@ class RectangleButton(Rectangle, InteractiveObject):
     def __init__(self, x, y, w, h, color=Color("black").get_color()) -> None:
         super().__init__(x, y, w, h, color) # constructer for Rectangle class
         super(Rectangle, self).__init__(InteractiveObject)  # constructer for InteractiveObject class
-        
-

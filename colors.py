@@ -9,8 +9,6 @@ class Color:
         "blue": (0, 0, 255)
     }
 
-
-
     def __init__(self, name: str="", r:int=0, g:int=0, b:int=0) -> None:
         if name != "":
             try:

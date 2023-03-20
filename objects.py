@@ -121,8 +121,4 @@ class Polygon(Object):
 
     def display(self, gameDisplay):
         pygame.draw.polygon(gameDisplay, self.color, self.cords)
-        pass
-
-
-
-    
+        pass    

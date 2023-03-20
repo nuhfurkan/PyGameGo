@@ -123,7 +123,6 @@ class Polygon(Object):
         pygame.draw.polygon(gameDisplay, self.color, self.cords)
         pass
 
-class RectangleButton(Rectangle):
-    def __init__(self, x, y, w, h, color=Color("black").get_color()) -> None:
-        super().__init__(x, y, w, h, color)
 
+
+    

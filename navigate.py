@@ -44,7 +44,7 @@ class Navigator:
 
     def loadPreviousGames(self):
         reader = Reader()
-        for elem in reader.readRecords():
+        for elem in reader.getRecords():
             self.gameList.insert(elem.id, elem)
         pass
 
@@ -52,7 +52,7 @@ class Navigator:
         cs = self.gameList.curselection()
         #print(cs[0])
         reader = Reader()
-        pgame = reader.readRecords()[cs[0]]
+        pgame = reader.getRecords()[cs[0]]
         pgame.printThis()
         self.oldGame(pgame)
         pass

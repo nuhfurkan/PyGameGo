@@ -20,8 +20,11 @@ class Reader:
 
     def __init__(self) -> None:
         self.conn = sqlite3.connect("records")
-        self.readRecords()
+        self.records = self.readRecords()
         pass
+
+    def getRecords(self):
+        return self.records
 
     def readRecords(self):
         c = self.conn.cursor()

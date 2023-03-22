@@ -35,6 +35,9 @@ class Object:
         self.err.display(gameDisplay=gameDisplay)
         pass
 
+    def display(self, gameDisplay):
+        pass
+
     pass
 
 class Text(Object):

@@ -14,6 +14,7 @@ class Game:
         self.game_name = name
         self.fps_count = 60
         self.elems = []
+        self.interaticeObjects = []
         self.player: Player = None
 
         self.gameDisplay = pygame.display.set_mode((self.display_width,self.display_heigth), flags=pygame.SHOWN)
@@ -81,6 +82,14 @@ class Game:
             if self.player.get_x() > self.display_width - self.player.get_width() or self.player.get_x() < 0:
                 onGoing = False
             self.handle_event(event, self.player)
+
+            for inObject in self.interaticeObjects:
+                if inObject.checkError() == True:
+                    inObject.display_errors(gameDisplay = self.gameDisplay)
+                else:
+                    inObject.handleEvents()
+                    inObject.display(gameDisplay=self.gameDisplay)
+
 
             for elem in self.elems:
                 if elem.check_error() == True:

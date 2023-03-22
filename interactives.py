@@ -5,17 +5,29 @@ import pygame
 class InteractiveObject(Object):
     def __init__(self) -> None:
         Object.__init__()
+        self.onHoverFunc: function = None
+        self.onClickFunc: function = None
         pass
 
     def onClick(self, onDoFunc: function):
         onDoFunc()
         pass
 
+    def isClick(self) -> bool:
+        return False
+
     def onHover(self, onDoFunc: function):
-        onDoFunc()
+        self.onHoverFunc = onDoFunc
         pass
 
+    def isHover() -> bool:
+        return False
+
     def handleEvents(self):
+        if self.isHover() == True:
+            self.onHoverFunc()
+        if self.isClick() == True:
+            self.onClickFunc()
         pass
 
 class RectangleButton(InteractiveObject):

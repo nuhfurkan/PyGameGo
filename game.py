@@ -13,6 +13,8 @@ class Game:
         self.display_heigth = 600
         self.game_name = name
         self.fps_count = 60
+
+        ### TO DO: elems and interactive Elems should be kept together and their attributes&methods should be used after checking their classes
         self.elems = []
         self.interaticeObjects = []
         self.player: Player = None

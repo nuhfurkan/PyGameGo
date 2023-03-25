@@ -34,6 +34,9 @@ class Game:
         self.elems.append(new_elem)
         pass
 
+    def add_interactive(self, new_elem):
+        self.interaticeObjects.append(new_elem)
+
     def add_player(self, new_player):
         self.player = new_player
 
@@ -71,6 +74,7 @@ class Game:
 
         while onGoing:
             self.gameDisplay.fill(Color("white").get_color())
+            mouseCord = pygame.mouse.get_pos()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     newSaver = Saver()
@@ -84,10 +88,10 @@ class Game:
             self.handle_event(event, self.player)
 
             for inObject in self.interaticeObjects:
-                if inObject.checkError() == True:
+                if inObject.check_error() == True:
                     inObject.display_errors(gameDisplay = self.gameDisplay)
                 else:
-                    inObject.handleEvents()
+                    inObject.handleEvents(mouseCord)
                     inObject.display(gameDisplay=self.gameDisplay)
 
 

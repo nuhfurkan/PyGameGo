@@ -3,6 +3,8 @@ from game import Game
 from objects import Rectangle, Circle
 from player import Player
 from reader import Reader
+from interactives import RectangleButton
+from colors import Color
 import pickle
 
 class Navigator:
@@ -31,11 +33,16 @@ class Navigator:
         myGame = Game(self.gameName)
         myUfo = Player(10, 10, "images/ufo.png")
 
-        myRect = Rectangle(300, 300, 150, 150)
+        myRect = RectangleButton(300, 300, 150, 150)
+        print(type(myRect))
+        def buttononhoverfunc():
+            myRect.color = Color(r=255, b=0, g=0).get_color()
+            pass
+        myRect.onHover(buttononhoverfunc)
         myCircle = Circle(150, 150, 25)
 
         myGame.add_elem(myCircle)
-        myGame.add_elem(myRect)
+        myGame.add_interactive(myRect)
         myGame.add_player(myUfo)
 
         self.navigation.destroy()

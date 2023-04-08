@@ -7,6 +7,7 @@ from tkinter.simpledialog import askstring
 import shutil
 
 class Saver:
+    # A temporary shadow object of records
     class PlayerSaver():
         def __init__(self, player, address: str) -> None:
             self.x = player.x
@@ -16,6 +17,7 @@ class Saver:
             self.recordPlayer()
             pass
 
+        # pygaem.surface does not pickle, so players recorded seperately
         def recordPlayer(self):
             fileX = open(self.address+"/x", "wb")
             pickle.dump(self.x, fileX)
@@ -40,6 +42,7 @@ class Saver:
         self.initiateDataBase()
         pass
 
+    # Create database if there is no
     def initiateDataBase(self):
         if os.path.exists("recordsFiles") == False:
             os.makedirs("recordsFiles")
@@ -49,10 +52,12 @@ class Saver:
         c.close()
         pass
 
+    # Save records
+    # recoverData is a parameter if override is necessary
     def Save(self, game, recoverData = None):
         thisTime = self.current_time
         name = None
-
+        
         if recoverData != None:
             c = self.conn.cursor()
             print("Record name: " + recoverData.fname)

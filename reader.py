@@ -26,6 +26,13 @@ class Reader:
     def getRecords(self):
         return self.records
 
+    # Method to read records from "games" table, "records" file
+    """
+    Structure of the "games" table
+        gameId -> INTEGER PRIMARY KEY AUTOINCREMENT
+        fileName -> TEXT NOT NULL // the name of the file timestamp taken by the Saver objects
+        recordName -> TEXT // the name of the save given by the player
+    """
     def readRecords(self):
         c = self.conn.cursor()
         c.execute("CREATE TABLE IF NOT EXISTS games([gameId] INTEGER PRIMARY KEY AUTOINCREMENT, [fileName] TEXT NOT NULL, [recordName] TEXT)")

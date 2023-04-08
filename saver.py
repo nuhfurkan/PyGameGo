@@ -1,9 +1,10 @@
 from datetime import datetime
 import sqlite3
 import os
-import pickle
+import  dill as pickle
 import tkinter
 from tkinter.simpledialog import askstring
+import shutil
 
 class Saver:
     class PlayerSaver():
@@ -48,23 +49,43 @@ class Saver:
         c.close()
         pass
 
-    def Save(self, game):
-        os.makedirs("recordsFiles/"+self.current_time)
-        os.makedirs("recordsFiles/"+self.current_time+'/player')
-        playerRecord = self.PlayerSaver(game.player, "recordsFiles/"+self.current_time+'/player')
-        recordFileElems = open("recordsFiles/"+self.current_time+'/elems', "wb")
+    def Save(self, game, recoverData = None):
+        thisTime = self.current_time
+        name = None
+
+        if recoverData != None:
+            c = self.conn.cursor()
+            print("Record name: " + recoverData.fname)
+            c.execute(
+               "DELETE FROM games WHERE gameId = "+ str(recoverData.id) + ";"
+            )
+            self.conn.commit()
+            c.close()
+            shutil.rmtree(recoverData.fname)
+            name = recoverData.name
+            thisTime = recoverData.fname.split("/")[-1]	
+            pass
+        os.makedirs("recordsFiles/"+thisTime)
+        os.makedirs("recordsFiles/"+thisTime+'/player')
+        playerRecord = self.PlayerSaver(game.player, "recordsFiles/"+thisTime+'/player')
+        recordFileElems = open("recordsFiles/"+thisTime+'/elems', "wb")
         pickle.dump(game.elems, recordFileElems)
         recordFileElems.close()
+
+        recordFileIntElems = open("recordsFiles/"+thisTime+'/intElems', "wb")
+        pickle.dump(game.interaticeObjects, recordFileIntElems)
+        recordFileIntElems.close()
         
-        newMessage = tkinter.Tk()
-        newMessage.geometry("0x0")
-        name = askstring('Name', 'Enter a record name?')
-        newMessage.destroy()
+        if name == None:
+            newMessage = tkinter.Tk()
+            newMessage.geometry("0x0")
+            name = askstring('Name', 'Enter a record name?')
+            newMessage.destroy()
 
         c = self.conn.cursor()
         c.execute(
                "INSERT INTO games(fileName, recordName) VALUES('"+
-                self.current_time+"',"+
+                thisTime+"',"+
                 "'"+name+"'"
             ")"
         )

@@ -8,6 +8,7 @@ from colors import Color
 import pickle
 
 class Navigator:
+    # Initiates a navigation screen using tkinter, where list of previous games presented.
     def __init__(self, gameName) -> None:
         self.gameName = gameName
         self.navigation = tkinter.Tk()
@@ -28,7 +29,8 @@ class Navigator:
         self.navigation.mainloop()
         pass
 
-        
+    # Function to create a new game
+    # For this part, actually another object should be send here as parameter and this method should initiate a new game by referancing that object        
     def newGame(self):
         myGame = Game(self.gameName)
         myUfo = Player(10, 10, "images/ufo.png")
@@ -49,12 +51,14 @@ class Navigator:
         myGame.StartGame()
         pass
 
+    # Method to fetch list of previous games from records file - sqlite
     def loadPreviousGames(self):
         reader = Reader()
         for elem in reader.getRecords():
             self.gameList.insert(elem.id, elem)
         pass
 
+    # Method called when a previous game selected
     def selectListItem(self):
         cs = self.gameList.curselection()
         #print(cs[0])
@@ -64,6 +68,7 @@ class Navigator:
         self.oldGame(pgame)
         pass
 
+    # Method to recover a previously recorded game from the recorded data
     def oldGame(self, game):
         game.fname = "recordsFiles/" + game.fname
         myGame = Game(self.gameName)
@@ -75,16 +80,24 @@ class Navigator:
         playerurl = pickle.load(fileurl)
         myUfo = Player(playerx, playery, playerurl)
 
-        fileelem = open(game.fname+"/elems", "rb")
-        elems = pickle.load(fileelem)
 
+        fileelem = open(game.fname+"/elems", "rb")
+        fileIntElem = open(game.fname+"/intElems", "rb")
+        elems = pickle.load(fileelem)
+        intElems = pickle.load(fileIntElem)
+
+        for elem in intElems:
+            myGame.add_interactive(elem)
         for elem in elems:
             myGame.add_elem(elem)
         myGame.add_player(myUfo)
 
         self.navigation.destroy()
+        myGame.isRecovered = True
+        myGame.recoverData = game
         myGame.StartGame()
         pass
 
+    # Close navigator - end app
     def onClosing(self):
         quit()

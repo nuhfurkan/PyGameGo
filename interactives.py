@@ -5,8 +5,8 @@ import pygame
 class InteractiveObject(Object):
     def __init__(self) -> None:
         Object.__init__(self)
-        self.onHoverFunc: function = None
-        self.onClickFunc: function = None
+        self.onHoverFunc: function = lambda : None
+        self.onClickFunc: function = lambda : None
         pass
 
     def onClick(self, onDoFunc = None):

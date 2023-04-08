@@ -8,6 +8,8 @@ from saver import Saver
 class Game:
     def __init__(self, name) -> None:
         pygame.init()
+        self.isRecovered = False
+        self.recoverData: Object = None
         self.event_handler = EventHandler()
         self.display_width = 800
         self.display_heigth = 600
@@ -65,12 +67,14 @@ class Game:
             print("Collision")
         pass
 
+
     def message_display(self, text: Text):
         TextSurf = text.text_surface()
         TextRect = text.get_rect()
         TextRect.center = ((self.display_width/2),(self.display_heigth/2))
         self.gameDisplay.blit(TextSurf, TextRect)
 
+    # Initiate a new game
     def StartGame(self):
         onGoing = True
 
@@ -80,7 +84,13 @@ class Game:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     newSaver = Saver()
-                    newSaver.Save(self)
+                    if self.isRecovered:
+                        self.recoverData 
+                        newSaver.Save(self, self.recoverData)
+                        pass
+                    else:
+                        newSaver.Save(self)
+                        pass
                     onGoing = False
 
         # Game starts here

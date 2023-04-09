@@ -8,7 +8,6 @@ from nextgame import NextGame
 
 def gameFunc(self):
     myGame = Game("some name")
-    ## Creting a game can be removed
 
     myUfo = Player(10, 10, "images/ufo.png")
 
@@ -25,7 +24,6 @@ def gameFunc(self):
     myGame.add_interactive(myRect)
     myGame.add_player(myUfo)
 
-    ## Also, I want to remove those 2 lines
     myGame.StartGame()
 
 myNextGame = NextGame("test")

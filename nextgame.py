@@ -6,6 +6,7 @@ class NextGame():
         pass
 
     # this function copied from stackoverflow
+    # to bing the functions with the navigator objects
     def bind(self, func):
         """
         Bind the function *func* to *instance*, with either provided name *as_name*
@@ -21,6 +22,7 @@ class NextGame():
         setattr(self.startNav, "newGame", bound_method)
         return bound_method
     
+    # Start your game
     def start(self):
         self.startNav.set_nav_settings()
         pass

@@ -5,12 +5,11 @@ from player import Player
 from reader import Reader
 from interactives import RectangleButton
 from colors import Color
-import pickle
+import dill as pickle
+import builtins
 
 class Navigator:
-    # Initiates a navigation screen using tkinter, where list of previous games presented.
-    def __init__(self, gameName) -> None:
-        self.gameName = gameName
+    def set_nav_settings(self):
         self.navigation = tkinter.Tk()
         self.navigation.title(self.gameName)
         self.navigation.geometry('800x600')
@@ -27,11 +26,23 @@ class Navigator:
 
         self.navigation.protocol("WM_DELETE_WINDOW", self.onClosing)
         self.navigation.mainloop()
+
+    # Initiates a navigation screen using tkinter, where list of previous games presented.    
+    def __init__(self, gameName) -> None:
+        self.gameName = gameName
         pass
+
+    def destroyNavigation(self):
+        self.navigation.destroy()
+        pass
+
+    def get_gameName(self):
+        return self.gameName
 
     # Function to create a new game
     # For this part, actually another object should be send here as parameter and this method should initiate a new game by referancing that object        
     def newGame(self):
+        """
         myGame = Game(self.gameName)
         myUfo = Player(10, 10, "images/ufo.png")
 
@@ -50,6 +61,7 @@ class Navigator:
 
         self.navigation.destroy()
         myGame.StartGame()
+        """
         pass
 
     # Method to fetch list of previous games from records file - sqlite

@@ -7,6 +7,7 @@ from game import Game
 from nextgame import NextGame
 
 def gameFunc(self):
+    # Name here is the title of the game screen
     myGame = Game("some name")
 
     myUfo = Player(10, 10, "images/ufo.png")
@@ -26,6 +27,7 @@ def gameFunc(self):
 
     myGame.StartGame()
 
+# Name here is the title of the navigation
 myNextGame = NextGame("test")
 myNextGame.bind(gameFunc)
 myNextGame.start()

@@ -11,7 +11,14 @@ class Object:
         self.y = 0
         self.h = 0
         self.w = 0
+        self.img = None
         pass
+
+    def set_img(self, url: str):
+        self.img = url
+
+    def get_url(self):
+        return self.img
 
     def get_x(self):
         return self.x

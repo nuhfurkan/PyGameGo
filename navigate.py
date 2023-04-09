@@ -36,6 +36,7 @@ class Navigator:
         myUfo = Player(10, 10, "images/ufo.png")
 
         myRect = RectangleButton(300, 300, 150, 150)
+        myRect.set_img("images/ufo.png")
         print(type(myRect))
         def buttononhoverfunc():
             myRect.color = Color(r=255, b=0, g=0).get_color()

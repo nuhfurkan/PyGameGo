@@ -105,6 +105,9 @@ class Game:
                 else:
                     inObject.handleEvents(mouseCord)
                     inObject.display(gameDisplay=self.gameDisplay)
+                    myImage = pygame.image.load(inObject.get_url())
+                    myImage = pygame.transform.scale(myImage, (inObject.get_w(), inObject.get_h()))
+                    self.gameDisplay.blit(myImage, (inObject.get_x(), inObject.get_y()))
 
 
             for elem in self.elems:

@@ -57,7 +57,7 @@ class Saver:
     def Save(self, game, recoverData = None):
         thisTime = self.current_time
         name = None
-        
+
         if recoverData != None:
             c = self.conn.cursor()
             print("Record name: " + recoverData.fname)
